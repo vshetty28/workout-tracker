@@ -1,17 +1,16 @@
-"use client";
 
 import Image from "next/image";
 import SignInButton from "@/components/signin";
 import { useSession } from "next-auth/react";
 import SignOutButton from "@/components/signout";
 import { signOut } from "next-auth/react";
-
-export default function Home() {
-	const { data: session } = useSession();
+import Link from "next/link";
+import { auth } from "@/auth";
+export default async function Home() {
+	const session = await auth();
 	return (
 		<div className="text-center">
-			{session ? <SignOutButton /> : <SignInButton />}
-			<h1 className="">{session?.user ? session.user.email : "Signed out."}</h1>
+			<Link href="/log-workout" className="btn btn-primary">Log Workout</Link>
 		</div>
 	);
 }

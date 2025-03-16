@@ -1,10 +1,12 @@
+import { signInAction } from "@/actions";
 import React from "react";
-import { signIn } from "next-auth/react";
-const SignInButton = () => {
+const SignInButton = async () => {
 	return (
-		<button className="btn btn-primary" onClick={() => signIn()}>
-			Sign In
-		</button>
+		<form action={signInAction}>
+			<button className="btn btn-primary" type="submit">
+				Sign In
+			</button>
+		</form>
 	);
 };
 
