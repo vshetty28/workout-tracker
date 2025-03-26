@@ -17,7 +17,6 @@ export const metadata = {
 };
 import { SessionProvider } from "next-auth/react";
 import AuthComponent from "@/components/AuthComponent";
-import SignOutButton from "@/components/signout";
 import Link from "next/link";
 
 export default function RootLayout({ children }) {
@@ -25,10 +24,7 @@ export default function RootLayout({ children }) {
 		<html lang="en">
 			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
 				<SessionProvider>
-					<div className="flex flex-col items-center text-center h-screen p-5">
-						<Link href="/" className="flex-none p-2">
-							<h1 className="text-4xl text-center text-primary font-bold transition duration-200 ease-in-out hover:scale-105 ">Workout Tracker</h1>
-						</Link>
+					<div className="flex flex-col items-center text-center h-screen max-h-screen p-5">
 						<AuthComponent>{children}</AuthComponent>
 					</div>
 				</SessionProvider>

@@ -8,7 +8,7 @@ const SignOutButton = async () => {
 		return <></>;
 	}
 	return (
-		<form action={signOutAction} className="m-5">
+		<form action={signOutAction}>
 			<button className="btn btn-primary" type="submit">
 				Sign Out
 			</button>

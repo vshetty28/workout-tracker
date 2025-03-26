@@ -8,7 +8,7 @@ const UserDetails = async () => {
 		return <div className="m-5">Not Logged In.</div>;
 	} else {
 		return (
-			<div className="flex flex-row justify-center items-center m-5 gap-4">
+			<div className="flex flex-row justify-center items-center gap-3">
 				<img src={session?.user?.image} alt="user image" className="rounded-full size-10"/>
 				<h1>{session?.user?.name}</h1>
 			</div>

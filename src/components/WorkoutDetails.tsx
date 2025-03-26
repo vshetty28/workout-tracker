@@ -39,7 +39,7 @@ const WorkoutDetails: React.FC<{ workout: WorkoutType }> = ({ workout }) => {
 	};
 	const weekday = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
 	return (
-		<div className="relative border-2 p-3 rounded-lg border-primary flex flex-col gap-3">
+		<div className="relative border-2 p-3 rounded-lg border-primary flex flex-col gap-2">
 			<div className="absolute right-1 top-1 flex flex-row gap-1">
 				<Link href={`/edit-workout/${workout.id}`}>
 					<Image src="/edit.svg" alt="Edit" className="btn btn-xs btn-primary btn-square p-1" width={24} height={24} />
@@ -48,7 +48,7 @@ const WorkoutDetails: React.FC<{ workout: WorkoutType }> = ({ workout }) => {
 					<Image src="/delete.svg" alt="Delete" className="btn btn-xs btn-error btn-square p-1" width={24} height={24} />
 				</button>
 			</div>
-			<div className="">
+			<div className="mt-3">
 				<h1 className="text-primary text-2xl tracking-wide font-semibold w-full">{workout.workout}</h1>
 				<h1 className="text-sm font-light tracking-wide">
 					<span className="text-accent">{weekday[workout.date.getDay()]}</span> {workout.date.toLocaleDateString(undefined, dateoptions)}

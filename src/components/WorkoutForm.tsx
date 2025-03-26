@@ -3,7 +3,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Exercise from "@/components/Exercise";
 import { createWorkout, updateWorkout } from "@/actions";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 type WorkoutType = {
 	exercises: ({
@@ -25,6 +25,7 @@ type WorkoutType = {
 };
 
 const WorkoutForm: React.FC<{ currWorkout: WorkoutType; edit: boolean }> = ({ currWorkout, edit }) => {
+	const router = useRouter();
 	const [exercises, setExercises] = useState(
 		currWorkout.exercises.map(({ exercise }) => {
 			return {
@@ -78,13 +79,13 @@ const WorkoutForm: React.FC<{ currWorkout: WorkoutType; edit: boolean }> = ({ cu
 		evt.preventDefault();
 		const createdWorkout = await createWorkout(workout);
 		console.log(createdWorkout);
-		redirect("/workouts");
+		router.push("/workouts");
 	};
 	const editWorkout = async (evt: React.FormEvent<HTMLFormElement>) => {
 		evt.preventDefault();
 		const updatedWorkout = await updateWorkout(workout, currWorkout.id);
 		console.log(updatedWorkout);
-		redirect("/workouts");
+		router.push("/workouts");
 	};
 	const muscleGroups = ["Chest", "Back", "Shoulders", "Biceps", "Triceps", "Quadriceps", "Hamstrings", "Glutes", "Calves", "Abs", "Other"];
 
@@ -132,6 +133,9 @@ const WorkoutForm: React.FC<{ currWorkout: WorkoutType; edit: boolean }> = ({ cu
 				</div>
 				<button className="btn btn-primary" type="submit">
 					Save Workout
+				</button>
+				<button className="btn btn-soft" type='button' onClick={()=>router.back()}>
+					Cancel
 				</button>
 			</form>
 		</div>
