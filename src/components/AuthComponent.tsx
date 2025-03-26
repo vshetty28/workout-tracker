@@ -7,8 +7,8 @@ const AuthComponent = async ({ children }) => {
 	const session = await auth();
 	if (!session?.user) {
 		return (
-			<div>
-				<h1>Please Log In.</h1>
+			<div className="flex flex-col mt-2 text-2xl ">
+				<h1 className="font-bold m-5">Please sign in to use the Workout Tracker!</h1>
 				<SignInButton />
 			</div>
 		);
@@ -16,7 +16,7 @@ const AuthComponent = async ({ children }) => {
 	return (
 		<div className="grow flex flex-col justify-between h-full">
 			{children}
-			<div className="flex flex-row">
+			<div className="flex flex-row justify-center">
 				<UserDetails />
 				<SignOutButton />
 			</div>

@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
 				<SessionProvider>
 					<div className="flex flex-col items-center text-center h-screen p-5">
 						<Link href="/" className="flex-none p-2">
-							<h1 className="text-4xl text-center text-primary font-bold">Workout Tracker</h1>
+							<h1 className="text-4xl text-center text-primary font-bold transition duration-200 ease-in-out hover:scale-105 ">Workout Tracker</h1>
 						</Link>
 						<AuthComponent>{children}</AuthComponent>
 					</div>
