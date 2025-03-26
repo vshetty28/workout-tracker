@@ -1,7 +1,6 @@
 import React from "react";
 import { getWorkouts } from "@/actions";
-import WorkoutDetails
- from "@/components/WorkoutDetails";
+import WorkoutDetails from "@/components/WorkoutDetails";
 const Workouts = async () => {
 	const workouts = await getWorkouts();
 	return (

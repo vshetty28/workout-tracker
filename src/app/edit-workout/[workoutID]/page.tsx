@@ -2,7 +2,6 @@ import React from "react";
 import { prisma } from "@/prisma";
 import WorkoutForm from "@/components/WorkoutForm";
 import { auth } from "@/auth";
-import { getExercises } from "@/actions";
 const EditWorkout = async ({ params }) => {
 	const { workoutID } = await params;
     const session = await auth()
@@ -26,7 +25,6 @@ const EditWorkout = async ({ params }) => {
 			},
 		],
 	});
-	const exerciseList = await getExercises();
     if(session.user.id !== currWorkout.user_id) {
         return <div className="text-2xl mt-2">Access Denied.</div>
     }

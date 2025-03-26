@@ -1,15 +1,15 @@
 import React from "react";
-import { getExercises } from "@/actions";
 import WorkoutForm from "@/components/WorkoutForm";
 
 const LogWorkout = async () => {
 	const workout = {
-		name: "",
+		workout: "",
 		date: new Date(),
 		duration: 0,
 		exercises: [],
+		id:-1,
+		user_id:""
 	};
-	const exerciseList = await getExercises();
 	return <WorkoutForm currWorkout={workout} edit={false}/>;
 };
 

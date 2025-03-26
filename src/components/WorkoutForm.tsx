@@ -5,8 +5,34 @@ import Exercise from "@/components/Exercise";
 import { createWorkout, updateWorkout } from "@/actions";
 import { redirect } from "next/navigation";
 
-const WorkoutForm = ({currWorkout, edit}) => {
-    const [exercises, setExercises] = useState(currWorkout.exercises.map((item) => item.exercise));
+type WorkoutType = {
+	exercises: ({
+		exercise: {
+			exercise: string;
+			target: string;
+			id: number;
+		};
+	} & {
+		exercise_id: number;
+		workout_id: number;
+	})[];
+} & {
+	date: Date;
+	id: number;
+	workout: string;
+	duration: number;
+	user_id: string;
+};
+
+const WorkoutForm: React.FC<{ currWorkout: WorkoutType; edit: boolean }> = ({ currWorkout, edit }) => {
+	const [exercises, setExercises] = useState(
+		currWorkout.exercises.map(({ exercise }) => {
+			return {
+				exercise: exercise.exercise,
+				target: exercise.target,
+			};
+		})
+	);
 
 	const [workout, setWorkout] = useState({
 		name: currWorkout.workout,
@@ -24,7 +50,7 @@ const WorkoutForm = ({currWorkout, edit}) => {
 		setWorkout((values) => ({ ...values, exercises: exercises }));
 	}, [exercises]);
 
-	const formatDate = (date) => {
+	const formatDate = (date : Date) => {
 		return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
 	};
 
@@ -48,18 +74,18 @@ const WorkoutForm = ({currWorkout, edit}) => {
 	const handleExerciseChange = ({ target }) => {
 		setCurrExercise((values) => ({ ...values, [target.name]: target.value }));
 	};
-	const saveWorkout = async (evt) => {
+	const saveWorkout = async (evt: React.FormEvent<HTMLFormElement>) => {
 		evt.preventDefault();
 		const createdWorkout = await createWorkout(workout);
 		console.log(createdWorkout);
 		redirect("/workouts");
 	};
-    const editWorkout = async(evt) => {
-        evt.preventDefault();
-        const updatedWorkout = await updateWorkout(workout, currWorkout.id);
-        console.log(updatedWorkout);
-        redirect('/workouts')
-    }
+	const editWorkout = async (evt: React.FormEvent<HTMLFormElement>) => {
+		evt.preventDefault();
+		const updatedWorkout = await updateWorkout(workout, currWorkout.id);
+		console.log(updatedWorkout);
+		redirect("/workouts");
+	};
 	const muscleGroups = ["Chest", "Back", "Shoulders", "Biceps", "Triceps", "Quadriceps", "Hamstrings", "Glutes", "Calves", "Abs", "Other"];
 
 	return (
