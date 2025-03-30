@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Metadata } from "next";
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -10,6 +11,10 @@ const geistMono = Geist_Mono({
 	variable: "--font-geist-mono",
 	subsets: ["latin"],
 });
+
+export const metadata: Metadata = {
+	title: "Workout Tracker",
+};
 
 import { SessionProvider } from "next-auth/react";
 import AuthComponent from "@/components/AuthComponent";

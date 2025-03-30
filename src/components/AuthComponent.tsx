@@ -4,6 +4,7 @@ import SignInButton from "./signin";
 import UserDetails from "./UserDetails";
 import SignOutButton from "./signout";
 import Link from "next/link";
+
 const AuthComponent = async ({ children }) => {
 	const session = await auth();
 	if (!session?.user) {
