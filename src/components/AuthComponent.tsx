@@ -26,7 +26,7 @@ const AuthComponent = async ({ children }) => {
 					<SignOutButton />
 				</div>
 			</div>
-			<div className="w-1/3">{children}</div>
+			{children}
 		</div>
 	);
 };

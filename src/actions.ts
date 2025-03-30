@@ -53,7 +53,7 @@ export const updateWorkout = async (workout, workoutID) => {
 			date: workout.date,
 			duration: Number(workout.hours) * 60 + Number(workout.minutes),
 			exercises: {
-                deleteMany: {},
+				deleteMany: {},
 				create: workout.exercises.map((exercise) => {
 					return {
 						exercise: {
@@ -104,21 +104,23 @@ export const getWorkouts = async () => {
 	return workouts;
 };
 
-export const deleteWorkout = async(workoutID) => {
-    const workoutExercisesDeleted = await prisma.workout_Exercises.deleteMany({
-			where: {
-				workout_id: workoutID,
-			},
-		});
-    const deleted = await prisma.workout.delete({
-        where: {
-            id : workoutID,
-        }
-    })
-    return deleted;
-}
+export const deleteWorkout = async (workoutID) => {
+	const workoutExercisesDeleted = await prisma.workout_Exercises.deleteMany({
+		where: {
+			workout_id: workoutID,
+		},
+	});
+	const deleted = await prisma.workout.delete({
+		where: {
+			id: workoutID,
+		},
+	});
+	return deleted;
+};
 
-export const getExercises = async() => {
-	const exercises = await prisma.exercise.findMany();
+export const getAllExercises = async () => {
+	const session = await auth();
+	let exercises = await prisma.$queryRaw`SELECT * FROM "Exercise" e JOIN "Workout_Exercises" we ON we.exercise_id = e.id JOIN "Workout" w ON we.workout_id = w.id WHERE w.user_id=${session.user.id} ORDER BY w.date DESC`;
+	console.log(exercises[0]);
 	return exercises;
-}
+};
