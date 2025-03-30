@@ -51,7 +51,7 @@ const WorkoutForm: React.FC<{ currWorkout: WorkoutType; edit: boolean }> = ({ cu
 		setWorkout((values) => ({ ...values, exercises: exercises }));
 	}, [exercises]);
 
-	const formatDate = (date : Date) => {
+	const formatDate = (date: Date) => {
 		return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
 	};
 
@@ -134,7 +134,7 @@ const WorkoutForm: React.FC<{ currWorkout: WorkoutType; edit: boolean }> = ({ cu
 				<button className="btn btn-primary" type="submit">
 					Save Workout
 				</button>
-				<button className="btn btn-soft" type='button' onClick={()=>router.back()}>
+				<button className="btn btn-soft" type="button" onClick={() => router.back()}>
 					Cancel
 				</button>
 			</form>

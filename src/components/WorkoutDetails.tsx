@@ -32,7 +32,7 @@ const WorkoutDetails: React.FC<{ workout: WorkoutType }> = ({ workout }) => {
 			router.refresh();
 		}
 	};
-	const dateoptions : {year : "numeric", month: "numeric", day: "numeric"} = {
+	const dateoptions: { year: "numeric"; month: "numeric"; day: "numeric" } = {
 		year: "numeric",
 		month: "numeric",
 		day: "numeric",

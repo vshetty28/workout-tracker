@@ -9,7 +9,7 @@ const UserDetails = async () => {
 	} else {
 		return (
 			<div className="flex flex-row justify-center items-center gap-3">
-				<Image src={session?.user?.image} alt="user image" className="rounded-full size-10" width={200} height={200}/>
+				<Image src={session?.user?.image} alt="user image" className="rounded-full size-10" width={200} height={200} />
 				<h1>{session?.user?.name}</h1>
 			</div>
 		);

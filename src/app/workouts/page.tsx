@@ -2,14 +2,13 @@ import React from "react";
 import { getWorkouts } from "@/actions";
 import WorkoutDetails from "@/components/WorkoutDetails";
 import { Metadata } from "next";
-export const metadata : Metadata = {
-	title: 'Workouts'
-}
+export const metadata: Metadata = {
+	title: "Workouts",
+};
 const Workouts = async () => {
 	const workouts = await getWorkouts();
 	return (
 		<div className="w-1/3">
-
 			<div className="flex flex-col gap-3 mt-2">
 				<h1 className="text-2xl font-bold">Workouts</h1>
 				<div className="flex flex-col gap-4 overflow-auto">

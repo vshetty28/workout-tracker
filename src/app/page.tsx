@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { Metadata } from "next";
-export const metadata : Metadata = {
-	title: 'Workout Tracker'
-}
+export const metadata: Metadata = {
+	title: "Workout Tracker",
+};
 export default async function Home() {
 	return (
 		<div className="w-1/4">
