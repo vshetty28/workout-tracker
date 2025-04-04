@@ -2,7 +2,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Exercise from "@/components/Exercise";
-import { createWorkout, updateWorkout } from "@/actions";
+import { createWorkout, updateWorkout } from "@/lib/actions";
 import { useRouter } from "next/navigation";
 
 type WorkoutType = {

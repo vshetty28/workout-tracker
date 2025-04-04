@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { deleteWorkout } from "@/actions";
+import { deleteWorkout } from "@/lib/actions";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 

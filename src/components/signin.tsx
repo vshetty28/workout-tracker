@@ -1,4 +1,4 @@
-import { signInAction } from "@/actions";
+import { signInAction } from "@/lib/actions";
 import React from "react";
 const SignInButton = async () => {
 	return (

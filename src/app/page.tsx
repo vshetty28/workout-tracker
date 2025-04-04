@@ -5,7 +5,7 @@ export const metadata: Metadata = {
 };
 export default async function Home() {
 	return (
-		<div className="w-1/4">
+		<div className="lg:w-1/4">
 			<div className="text-center flex flex-col gap-5 mt-10">
 				<Link href="/log-workout" className="btn btn-primary transition duration-200 ease-in-out hover:scale-105">
 					Log Workout

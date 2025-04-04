@@ -1,2 +1,11 @@
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+    exclude: rootcolor;
+};
+
+
+body {
+    color: var(--foreground);
+    background: var(--color-base-300);
+    font-family: sans-serif;
+}

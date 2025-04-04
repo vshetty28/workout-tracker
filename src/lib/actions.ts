@@ -1,6 +1,7 @@
 "use server";
-import { signIn, signOut, auth } from "@/auth";
-import { prisma } from "@/prisma";
+import { signIn, signOut, auth } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
+import { Prisma } from "@prisma/client";
 
 export const signInAction = async () => {
 	await signIn("google");
@@ -118,9 +119,17 @@ export const deleteWorkout = async (workoutID) => {
 	return deleted;
 };
 
-export const getAllExercises = async () => {
+export const getAllExercises = async (startDate : Date, endDate: Date, minDuration: number, maxDuration : number, sort: string, order: string) => {
 	const session = await auth();
-	let exercises = await prisma.$queryRaw`SELECT * FROM "Exercise" e JOIN "Workout_Exercises" we ON we.exercise_id = e.id JOIN "Workout" w ON we.workout_id = w.id WHERE w.user_id=${session.user.id} ORDER BY w.date DESC`;
-	console.log(exercises[0]);
+	const sortCol = Prisma.sql([sort]);
+	const sortOrder = Prisma.sql([order]);
+	let exercises = await prisma.$queryRaw`SELECT * FROM "Exercise" e \
+										   JOIN "Workout_Exercises" we ON we.exercise_id = e.id \
+										   JOIN "Workout" w ON we.workout_id = w.id \
+										   WHERE w.user_id=${session.user.id} \
+										   AND w.duration <= ${maxDuration} AND w.duration >= ${minDuration} \
+										   AND w.date >= ${startDate} AND w.date <= ${endDate} \
+										   ORDER BY ${sortCol} ${sortOrder}`;
+	//console.log(exercises[0]);
 	return exercises;
 };

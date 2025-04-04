@@ -1,7 +1,7 @@
 import React from "react";
-import { prisma } from "@/prisma";
+import { prisma } from "@/lib/prisma";
 import WorkoutForm from "@/components/WorkoutForm";
-import { auth } from "@/auth";
+import { auth } from "@/lib/auth";
 import Head from "next/head";
 const EditWorkout = async ({ params }) => {
 	const { workoutID } = await params;

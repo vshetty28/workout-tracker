@@ -1,5 +1,5 @@
 import React from "react";
-import { auth } from "@/auth";
+import { auth } from "@/lib/auth";
 import SignInButton from "./signin";
 import UserDetails from "./UserDetails";
 import SignOutButton from "./signout";
@@ -16,13 +16,13 @@ const AuthComponent = async ({ children }) => {
 		);
 	}
 	return (
-		<div className="grow flex flex-col h-full w-full items-center">
-			<div className="sticky top-0 bg-base-100 z-50 flex flex-row w-screen justify-between items-center px-5">
+		<div className="grow flex flex-col h-full w-full items-center bg-background">
+			<div className=" sticky top-0 bg-base-300 shadow-sm z-50 flex flex-col lg:flex-row w-screen justify-between items-center lg:px-5 m-2 mb-6">
 				<div className="flex-1 invisible"></div>
 				<Link href="/" className="flex-1 p-2">
-					<h1 className="lg:text-6xl text-center text-primary font-bold transition duration-200 ease-in-out hover:scale-105 my-5">Workout Tracker</h1>
+					<h1 className="text-4xl lg:text-6xl text-center text-nowrap text-primary font-bold lg:my-5">Workout Tracker</h1>
 				</Link>
-				<div className="flex-1 flex flex-row justify-end gap-4">
+				<div className="flex-1 flex flex-row justify-end gap-2 lg:gap-4">
 					<UserDetails />
 					<SignOutButton />
 				</div>
