@@ -20,7 +20,7 @@ const ExerciseFilter = () => {
 	};
 	const pathname = usePathname();
 	const router = useRouter();
-    const searchParams = useSearchParams();
+	const searchParams = useSearchParams();
 
 	const handleSubmit = (evt) => {
 		evt.preventDefault();
@@ -43,12 +43,12 @@ const ExerciseFilter = () => {
 			min_reps: 0,
 			max_reps: 2000,
 		});
-        const params = new URLSearchParams(searchParams.toString());
-        params.delete("start");
-        params.delete('end');
-        params.delete('min');
-        params.delete('max');
-        router.push(pathname + "?" + params.toString());
+		const params = new URLSearchParams(searchParams.toString());
+		params.delete("start");
+		params.delete("end");
+		params.delete("min");
+		params.delete("max");
+		router.push(pathname + "?" + params.toString());
 	};
 
 	return (
@@ -75,8 +75,6 @@ const ExerciseFilter = () => {
 						<input type="number" name="max_reps" className="text-center" min="0" max="2000" value={filter.max_reps} onChange={handleChange} />
 					</label>
 				</fieldset>
-
-
 
 				<fieldset hidden className="fieldset">
 					<legend className="fieldset-legend">Target</legend>

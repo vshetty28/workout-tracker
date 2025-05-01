@@ -88,7 +88,7 @@ model Workout {
     user User @relation(fields:[user_id], references: [id])
     user_id String
 
-    @@index([date, duration])
+    @@index([user_id, date])
 }
 
 model Exercise {

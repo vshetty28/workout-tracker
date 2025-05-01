@@ -25,9 +25,7 @@ const ExerciseReport = async ({ searchParams }: { searchParams: Promise<{ [key: 
 
 	const topExercises: any = await getTopExercises(startDate, endDate, Number(min), Number(max));
 
-
-
-	return <ExerciseTable exercises={exercises} averages={averages} topTargets={topTargets} topExercises={topExercises}/>;
+	return <ExerciseTable exercises={exercises} averages={averages} topTargets={topTargets} topExercises={topExercises} />;
 };
 
 export default ExerciseReport;
