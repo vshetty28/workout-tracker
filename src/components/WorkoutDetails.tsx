@@ -11,6 +11,8 @@ type WorkoutType = {
 			id: number;
 			exercise: string;
 			target: string;
+			sets: number;
+			reps: number;
 		};
 	} & {
 		exercise_id: number;
@@ -61,7 +63,10 @@ const WorkoutDetails: React.FC<{ workout: WorkoutType }> = ({ workout }) => {
 				{workout.exercises.map((exercise) => (
 					<div key={exercise.exercise.id} className="flex flex-row justify-between items-center border border-primary p-2 rounded-md gap-2 w-full">
 						<div key={exercise.exercise.id} className="grow flex justify-start items-center flex-row">
-							<h1 className="px-2 flex-1 text-left">{exercise.exercise.exercise}</h1>
+							<h1 className="px-2 flex-1 text-left">
+								{exercise.exercise.exercise} &mdash; {exercise.exercise.sets} x {exercise.exercise.reps}
+							</h1>
+							<h1></h1>
 							<p className="shrink badge badge-primary">{exercise.exercise.target}</p>
 						</div>
 					</div>

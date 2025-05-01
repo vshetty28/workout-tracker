@@ -10,6 +10,8 @@ type WorkoutType = {
 		exercise: {
 			exercise: string;
 			target: string;
+			sets: number;
+			reps: number;
 			id: number;
 		};
 	} & {
@@ -31,6 +33,8 @@ const WorkoutForm: React.FC<{ currWorkout: WorkoutType; edit: boolean }> = ({ cu
 			return {
 				exercise: exercise.exercise,
 				target: exercise.target,
+				sets: exercise.sets,
+				reps: exercise.reps
 			};
 		})
 	);
@@ -45,6 +49,8 @@ const WorkoutForm: React.FC<{ currWorkout: WorkoutType; edit: boolean }> = ({ cu
 	const [currExercise, setCurrExercise] = useState({
 		exercise: "",
 		target: "Pick a muscle group",
+		sets: 0,
+		reps: 0,
 	});
 
 	useEffect(() => {
@@ -57,11 +63,13 @@ const WorkoutForm: React.FC<{ currWorkout: WorkoutType; edit: boolean }> = ({ cu
 
 	const addExercise = () => {
 		if (currExercise.exercise && currExercise.target !== "Pick a muscle group") {
-			setExercises((prev) => [...prev, { exercise: currExercise.exercise, target: currExercise.target }]);
+			setExercises((prev) => [...prev, { exercise: currExercise.exercise, target: currExercise.target, sets: currExercise.sets, reps: currExercise.reps }]);
 		}
 		setCurrExercise({
 			exercise: "",
 			target: "Pick a muscle group",
+			sets: 0,
+			reps: 0,
 		});
 	};
 	const handleChange = ({ target }) => {
@@ -110,13 +118,13 @@ const WorkoutForm: React.FC<{ currWorkout: WorkoutType; edit: boolean }> = ({ cu
 					</label>
 				</fieldset>
 				<h1 className="text-xl font-bold text-center">Exercises</h1>
-				{workout.exercises.length ? workout.exercises.map((exercise) => <Exercise key={exercise.exercise} name={exercise.exercise} target={exercise.target} setExercises={setExercises} />) : <p className="text-sm italic mb-2 text-center">No exercises yet.</p>}
+				{workout.exercises.length ? workout.exercises.map((exercise) => <Exercise key={`${exercise.exercise}:${exercise.sets}x${exercise.reps}`} name={exercise.exercise} target={exercise.target} sets={exercise.sets} reps={exercise.reps} setExercises={setExercises} />) : <p className="text-sm italic mb-2 text-center">No exercises yet.</p>}
 				<div tabIndex={0} className="collapse collapse-plus border-primary border">
 					<input type="checkbox" />
 					<div className="collapse-title font-bold text-left">Create New Exercise</div>
 					<div className="collapse-content text-sm">
-						<div className="flex flex-col gap-2">
-							<div className="flex flex-row gap-2">
+						<div className="flex flex-col gap-2 justify-center">
+							<div className="flex flex-row gap-2 justify-center">
 								<input type="text" name="exercise" className="input input-sm" value={currExercise.exercise} onChange={handleExerciseChange} placeholder="Exercise name..." />
 								<select name="target" className="select select-sm" value={currExercise.target} onChange={handleExerciseChange}>
 									<option disabled={true}>Pick a muscle group</option>
@@ -124,6 +132,16 @@ const WorkoutForm: React.FC<{ currWorkout: WorkoutType; edit: boolean }> = ({ cu
 										<option key={muscle}>{muscle}</option>
 									))}
 								</select>
+							</div>
+							<div className="flex flex-row gap-2">
+								<label className="input input-sm">
+									Sets
+									<input type="number" name="sets" className="text-center" min="0" max="20" value={currExercise.sets} onChange={handleExerciseChange} />
+								</label>
+								<label className="input input-sm">
+									Reps
+									<input type="number" name="reps" className="text-center" min="0" max="20" value={currExercise.reps} onChange={handleExerciseChange} />
+								</label>
 							</div>
 							<button className="btn btn-primary btn-sm" onClick={addExercise} type="button">
 								Add Exercise

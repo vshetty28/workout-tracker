@@ -1,7 +1,6 @@
 "use client";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useState } from "react";
-import Link from "next/link";
 
 const ExerciseFilter = () => {
 	const muscleGroups = ["Chest", "Back", "Shoulders", "Biceps", "Triceps", "Quadriceps", "Hamstrings", "Glutes", "Calves", "Abs", "Other"];
@@ -13,8 +12,8 @@ const ExerciseFilter = () => {
 	const [filter, setFilter] = useState({
 		start_date: "1950-01-01",
 		end_date: today.toLocaleDateString("en-CA"),
-		min_duration: 0,
-		max_duration: 1440,
+		min_reps: 0,
+		max_reps: 2000,
 	});
 	const handleChange = ({ target }) => {
 		setFilter((values) => ({ ...values, [target.name]: target.value }));
@@ -33,16 +32,16 @@ const ExerciseFilter = () => {
 
 		params.set("start", startDate.toLocaleDateString());
 		params.set("end", endDate.toLocaleDateString());
-		params.set("min", "" + filter.min_duration);
-		params.set("max", "" + filter.max_duration);
+		params.set("min", "" + filter.min_reps);
+		params.set("max", "" + filter.max_reps);
 		router.push(pathname + "?" + params.toString());
 	};
 	const handleClear = () => {
 		setFilter({
 			start_date: "1950-01-01",
 			end_date: today.toLocaleDateString("en-CA"),
-			min_duration: 0,
-			max_duration: 1440,
+			min_reps: 0,
+			max_reps: 2000,
 		});
         const params = new URLSearchParams(searchParams.toString());
         params.delete("start");
@@ -66,16 +65,18 @@ const ExerciseFilter = () => {
 					</fieldset>
 				</div>
 				<fieldset className="fieldset flex flex-row ">
-					<legend className="fieldset-legend">Duration</legend>
+					<legend className="fieldset-legend">Rep Range</legend>
 					<label className="input">
 						Minimum
-						<input type="number" name="min_duration" className="text-center" min="0" max="1440" value={filter.min_duration} onChange={handleChange} />
+						<input type="number" name="min_reps" className="text-center" min="0" max="2000" value={filter.min_reps} onChange={handleChange} />
 					</label>
 					<label className="input">
 						Maximum
-						<input type="number" name="max_duration" className="text-center" min="0" max="1440" value={filter.max_duration} onChange={handleChange} />
+						<input type="number" name="max_reps" className="text-center" min="0" max="2000" value={filter.max_reps} onChange={handleChange} />
 					</label>
 				</fieldset>
+
+
 
 				<fieldset hidden className="fieldset">
 					<legend className="fieldset-legend">Target</legend>
