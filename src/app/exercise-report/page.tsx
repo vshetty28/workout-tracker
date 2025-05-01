@@ -23,7 +23,7 @@ const ExerciseReport = async ({ searchParams }: { searchParams: Promise<{ [key: 
 
 	const topTargets: any = await getTopTargets(startDate, endDate, Number(min), Number(max));
 
-		const topExercises: any = await getTopExercises(startDate, endDate, Number(min), Number(max));
+	const topExercises: any = await getTopExercises(startDate, endDate, Number(min), Number(max));
 
 
 

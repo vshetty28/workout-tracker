@@ -70,7 +70,7 @@ const ExerciseTable = ({ exercises, averages, topTargets, topExercises }) => {
 					<p className="text-accent">{averages.avg_reps.toFixed(2)}</p>
 				</div>
 
-				<div className="flex flex-row py-5 gap-4">
+				<div className="flex flex-col lg:flex-row py-5 gap-4">
 					<div className="flex flex-col">
 						<h1 className="font-bold text-primary">Top Muscle Targets</h1>
 						<table className="table table-xs text-nowrap text-right">
