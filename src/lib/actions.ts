@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
 
 export const signInAction = async () => {
-	await signIn("google");
+	await signIn("google", { prompt: "select_account" });
 };
 export const signOutAction = async () => {
 	await signOut({ redirectTo: "/" });
