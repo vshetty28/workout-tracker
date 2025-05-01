@@ -14,15 +14,18 @@ export const createWorkout = async (workout) => {
 	const session = await auth();
 	const createdWorkout = await prisma.workout.create({
 		data: {
+			// create workout
 			workout: workout.name,
 			date: workout.date,
 			duration: Number(workout.hours) * 60 + Number(workout.minutes),
+			// connect to user
 			user: {
 				connect: {
 					id: session?.user?.id,
 				},
 			},
 			exercises: {
+				// create correlated exercises
 				create: workout.exercises.map((exercise) => {
 					return {
 						exercise: {
@@ -43,14 +46,17 @@ export const createWorkout = async (workout) => {
 
 export const updateWorkout = async (workout, workoutID) => {
 	const createdWorkout = await prisma.workout.update({
+		// match user
 		where: {
 			id: workoutID,
 		},
 		data: {
+			// update workout
 			workout: workout.name,
 			date: workout.date,
 			duration: Number(workout.hours) * 60 + Number(workout.minutes),
 			exercises: {
+				// delete correlated workouts and recreate
 				deleteMany: {},
 				create: workout.exercises.map((exercise) => {
 					return {
@@ -73,9 +79,11 @@ export const updateWorkout = async (workout, workoutID) => {
 export const getWorkouts = async () => {
 	const session = await auth();
 	const workouts = await prisma.user.findFirst({
+		// match user
 		where: {
 			id: session?.user?.id,
 		},
+		// return workouts and exercises
 		include: {
 			workouts: {
 				include: {
@@ -85,6 +93,7 @@ export const getWorkouts = async () => {
 						},
 					},
 				},
+				// sort
 				orderBy: [
 					{
 						date: "desc",
@@ -101,11 +110,13 @@ export const getWorkouts = async () => {
 
 export const deleteWorkout = async (workoutID) => {
 	const deleted = await prisma.$transaction([
+		// delete from workout_exercises
 		prisma.workout_Exercises.deleteMany({
 			where: {
 				workout_id: workoutID,
 			},
 		}),
+		// delete workout
 		prisma.workout.delete({
 			where: {
 				id: workoutID,
@@ -126,11 +137,10 @@ export const getAllExercises = async (startDate: Date, endDate: Date, minReps: n
 										   AND w.date >= ${startDate} AND w.date <= ${endDate} \
 										   AND e.reps <= ${maxReps} AND e.reps >= ${minReps} \
 										   ORDER BY ${sortCol} ${sortOrder}`;
-	//console.log(exercises[0]);
 	return exercises;
 };
 
-export const getAverageDuration = async (startDate: Date, endDate: Date, minReps: number, maxReps: number) => {
+export const getAverages = async (startDate: Date, endDate: Date, minReps: number, maxReps: number) => {
 	const session = await auth();
 	let averages = await prisma.$queryRaw`SELECT AVG(e.sets) AS avg_sets, AVG(e.reps) AS avg_reps, AVG(w.duration) AS avg_duration FROM "Exercise" e \
 										   JOIN "Workout_Exercises" we ON we.exercise_id = e.id \

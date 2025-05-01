@@ -28,6 +28,8 @@ type WorkoutType = {
 
 const WorkoutForm: React.FC<{ currWorkout: WorkoutType; edit: boolean }> = ({ currWorkout, edit }) => {
 	const router = useRouter();
+
+	// exercises state
 	const [exercises, setExercises] = useState(
 		currWorkout.exercises.map(({ exercise }) => {
 			return {
@@ -38,7 +40,7 @@ const WorkoutForm: React.FC<{ currWorkout: WorkoutType; edit: boolean }> = ({ cu
 			};
 		})
 	);
-
+	// workout state (nested exercises)
 	const [workout, setWorkout] = useState({
 		name: currWorkout.workout,
 		date: currWorkout.date,
@@ -46,6 +48,8 @@ const WorkoutForm: React.FC<{ currWorkout: WorkoutType; edit: boolean }> = ({ cu
 		minutes: currWorkout.duration % 60,
 		exercises: exercises,
 	});
+
+	// current exercise state
 	const [currExercise, setCurrExercise] = useState({
 		exercise: "",
 		target: "Pick a muscle group",
@@ -53,14 +57,17 @@ const WorkoutForm: React.FC<{ currWorkout: WorkoutType; edit: boolean }> = ({ cu
 		reps: 0,
 	});
 
+	// update workout when exercises changes
 	useEffect(() => {
 		setWorkout((values) => ({ ...values, exercises: exercises }));
 	}, [exercises]);
 
+	// date formatting
 	const formatDate = (date: Date) => {
 		return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
 	};
 
+	// add an exercise
 	const addExercise = () => {
 		if (currExercise.exercise && currExercise.target !== "Pick a muscle group") {
 			setExercises((prev) => [...prev, { exercise: currExercise.exercise, target: currExercise.target, sets: currExercise.sets, reps: currExercise.reps }]);
@@ -72,29 +79,39 @@ const WorkoutForm: React.FC<{ currWorkout: WorkoutType; edit: boolean }> = ({ cu
 			reps: 0,
 		});
 	};
+	// update workout
 	const handleChange = ({ target }) => {
 		setWorkout((values) => ({ ...values, [target.name]: target.value }));
 	};
+
+	// update workout date
 	const handleDateChange = ({ target }) => {
 		const currDate = new Date(target.value);
 		currDate.setDate(currDate.getDate() + 1);
 		setWorkout((values) => ({ ...values, date: currDate }));
 	};
+
+	// update current exercise
 	const handleExerciseChange = ({ target }) => {
 		setCurrExercise((values) => ({ ...values, [target.name]: target.value }));
 	};
+
+	// create workout, save to db
 	const saveWorkout = async (evt: React.FormEvent<HTMLFormElement>) => {
 		evt.preventDefault();
 		const createdWorkout = await createWorkout(workout);
 		console.log(createdWorkout);
 		router.push("/workouts");
 	};
+
+	// update workout, save to db
 	const editWorkout = async (evt: React.FormEvent<HTMLFormElement>) => {
 		evt.preventDefault();
 		const updatedWorkout = await updateWorkout(workout, currWorkout.id);
 		console.log(updatedWorkout);
 		router.push("/workouts");
 	};
+	
 	const muscleGroups = ["Chest", "Back", "Shoulders", "Biceps", "Triceps", "Quadriceps", "Hamstrings", "Glutes", "Calves", "Abs", "Other"];
 
 	return (

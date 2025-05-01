@@ -1,5 +1,5 @@
 import React from "react";
-import { getAllExercises, getAverageDuration, getTopTargets, getTopExercises } from "@/lib/actions";
+import { getAllExercises, getAverages, getTopTargets, getTopExercises } from "@/lib/actions";
 import { Metadata } from "next";
 import ExerciseTable from "@/components/ExerciseTable";
 export const metadata: Metadata = {
@@ -19,7 +19,7 @@ const ExerciseReport = async ({ searchParams }: { searchParams: Promise<{ [key: 
 
 	const exercises: any = await getAllExercises(startDate, endDate, Number(min), Number(max), sortCol, sortOrder);
 
-	const averages: any = await getAverageDuration(startDate, endDate, Number(min), Number(max));
+	const averages: any = await getAverages(startDate, endDate, Number(min), Number(max));
 
 	const topTargets: any = await getTopTargets(startDate, endDate, Number(min), Number(max));
 

@@ -4,17 +4,15 @@ import React, { useState } from "react";
 
 const ExerciseFilter = () => {
 	const muscleGroups = ["Chest", "Back", "Shoulders", "Biceps", "Triceps", "Quadriceps", "Hamstrings", "Glutes", "Calves", "Abs", "Other"];
-	const formatDate = (date: Date) => {
-		return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
-	};
 	const today = new Date();
-
+	// filter state
 	const [filter, setFilter] = useState({
 		start_date: "1950-01-01",
 		end_date: today.toLocaleDateString("en-CA"),
 		min_reps: 0,
 		max_reps: 2000,
 	});
+	// update filter
 	const handleChange = ({ target }) => {
 		setFilter((values) => ({ ...values, [target.name]: target.value }));
 	};
@@ -22,6 +20,7 @@ const ExerciseFilter = () => {
 	const router = useRouter();
 	const searchParams = useSearchParams();
 
+	// submit
 	const handleSubmit = (evt) => {
 		evt.preventDefault();
 		const params = new URLSearchParams(searchParams.toString());
@@ -36,6 +35,7 @@ const ExerciseFilter = () => {
 		params.set("max", "" + filter.max_reps);
 		router.push(pathname + "?" + params.toString());
 	};
+	// clear
 	const handleClear = () => {
 		setFilter({
 			start_date: "1950-01-01",

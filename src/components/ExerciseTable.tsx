@@ -7,7 +7,6 @@ import SortButton from "./SortButton";
 const ExerciseTable = ({ exercises, averages, topTargets, topExercises }) => {
 	const [sort, setSort] = useState("date");
 	const [order, setOrder] = useState("DESC");
-	const muscleGroups = ["Chest", "Back", "Shoulders", "Biceps", "Triceps", "Quadriceps", "Hamstrings", "Glutes", "Calves", "Abs", "Other"];
 
 	const searchParams = useSearchParams();
 	const handleChangeSort = ({ target }) => {
