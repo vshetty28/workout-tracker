@@ -46,7 +46,7 @@ export const createWorkout = async (workout) => {
 
 export const updateWorkout = async (workout, workoutID) => {
 	const createdWorkout = await prisma.workout.update({
-		// match user
+		// match workout
 		where: {
 			id: workoutID,
 		},
@@ -56,7 +56,7 @@ export const updateWorkout = async (workout, workoutID) => {
 			date: workout.date,
 			duration: Number(workout.hours) * 60 + Number(workout.minutes),
 			exercises: {
-				// delete correlated workouts and recreate
+				// delete correlated exercises and recreate
 				deleteMany: {},
 				create: workout.exercises.map((exercise) => {
 					return {
