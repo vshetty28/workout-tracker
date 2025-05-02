@@ -24,6 +24,7 @@ const ExerciseTable = ({ exercises, averages, topTargets, topExercises }) => {
 	return (
 		<div className="flex flex-col items-center w-1/3 max-w-screen">
 			<div className="flex flex-col gap-2 items-center">
+				<h1 className="text-2xl font-bold">Exercise Report</h1>
 				<div className="text-pretty rounded-box border border-base-content/5 bg-base-200">
 					<table className="table table-xs lg:table-md ">
 						<thead>
