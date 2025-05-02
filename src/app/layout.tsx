@@ -21,9 +21,9 @@ export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
 			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-					<div className="flex flex-col items-center text-center h-screen max-h-screen">
-						<AuthComponent>{children}</AuthComponent>
-					</div>
+				<div className="flex flex-col items-center text-center h-screen max-h-screen">
+					<AuthComponent>{children}</AuthComponent>
+				</div>
 			</body>
 		</html>
 	);

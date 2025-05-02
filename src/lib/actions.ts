@@ -65,7 +65,7 @@ export const updateWorkout = async (workout, workoutID) => {
 								exercise: exercise.exercise,
 								target: exercise.target,
 								sets: Number(exercise.sets),
-								reps: Number(exercise.reps)
+								reps: Number(exercise.reps),
 							},
 						},
 					};
@@ -148,7 +148,7 @@ export const getAverages = async (startDate: Date, endDate: Date, minReps: numbe
 										   WHERE w.user_id=${session.user.id} \
 										   AND w.date >= ${startDate} AND w.date <= ${endDate} \
 										   AND e.reps <= ${maxReps} AND e.reps >= ${minReps}`;
-	return {avg_sets: Number(averages[0].avg_sets), avg_reps: Number(averages[0].avg_reps), avg_duration: Number(averages[0].avg_duration)};
+	return { avg_sets: Number(averages[0].avg_sets), avg_reps: Number(averages[0].avg_reps), avg_duration: Number(averages[0].avg_duration) };
 };
 
 export const getTopTargets = async (startDate: Date, endDate: Date, minReps: number, maxReps: number) => {

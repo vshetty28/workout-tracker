@@ -1,7 +1,5 @@
-import React from 'react'
-
-const SortButton = ({name, text, sort, handleChangeSort, order}) => {
-  return (
+const SortButton = ({ name, text, sort, handleChangeSort, order }) => {
+	return (
 		<div className={`flex flex-row justify-items text-xs lg:text-sm items-center gap-1 ${sort === name ? "text-primary" : ""}`}>
 			<button name={name} onClick={handleChangeSort}>
 				{text}
@@ -12,6 +10,6 @@ const SortButton = ({name, text, sort, handleChangeSort, order}) => {
 			</label>
 		</div>
 	);
-}
+};
 
-export default SortButton
+export default SortButton;

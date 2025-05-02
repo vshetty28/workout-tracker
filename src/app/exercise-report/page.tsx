@@ -1,4 +1,3 @@
-import React from "react";
 import { getAllExercises, getAverages, getTopTargets, getTopExercises } from "@/lib/actions";
 import { Metadata } from "next";
 import ExerciseTable from "@/components/ExerciseTable";

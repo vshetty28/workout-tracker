@@ -1,4 +1,3 @@
-import React from "react";
 import { auth } from "@/lib/auth";
 import SignInButton from "./signin";
 import UserDetails from "./UserDetails";
@@ -24,7 +23,7 @@ const AuthComponent = async ({ children }) => {
 				</Link>
 				<div className="flex-1 flex flex-row justify-end gap-2 lg:gap-4">
 					<UserDetails session={session} />
-					<SignOutButton session={session}/>
+					<SignOutButton session={session} />
 				</div>
 			</div>
 			{children}

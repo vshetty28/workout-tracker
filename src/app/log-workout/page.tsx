@@ -1,4 +1,3 @@
-import React from "react";
 import WorkoutForm from "@/components/WorkoutForm";
 import { Metadata } from "next";
 export const metadata: Metadata = {

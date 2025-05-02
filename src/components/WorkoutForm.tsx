@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+
 import { useState, useEffect } from "react";
 import Exercise from "@/components/Exercise";
 import { createWorkout, updateWorkout } from "@/lib/actions";
@@ -36,7 +36,7 @@ const WorkoutForm: React.FC<{ currWorkout: WorkoutType; edit: boolean }> = ({ cu
 				exercise: exercise.exercise,
 				target: exercise.target,
 				sets: exercise.sets,
-				reps: exercise.reps
+				reps: exercise.reps,
 			};
 		})
 	);
@@ -111,7 +111,7 @@ const WorkoutForm: React.FC<{ currWorkout: WorkoutType; edit: boolean }> = ({ cu
 		console.log(updatedWorkout);
 		router.push("/workouts");
 	};
-	
+
 	const muscleGroups = ["Chest", "Back", "Shoulders", "Biceps", "Triceps", "Quadriceps", "Hamstrings", "Glutes", "Calves", "Abs", "Other"];
 
 	return (

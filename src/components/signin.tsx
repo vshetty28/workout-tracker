@@ -1,5 +1,5 @@
 import { signInAction } from "@/lib/actions";
-import React from "react";
+
 const SignInButton = async () => {
 	return (
 		<form action={signInAction}>

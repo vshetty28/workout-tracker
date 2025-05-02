@@ -1,12 +1,9 @@
-
-type Props = {}
-
-const loading = (props: Props) => {
-  return (
+const loading = () => {
+	return (
 		<div className="flex justify-center items-center mt-40">
 			<span className="loading loading-spinner loading-xl text-primary"></span>
 		</div>
 	);
-}
+};
 
-export default loading
+export default loading;

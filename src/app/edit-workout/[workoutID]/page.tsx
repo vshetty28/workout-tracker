@@ -1,4 +1,3 @@
-import React from "react";
 import { prisma } from "@/lib/prisma";
 import WorkoutForm from "@/components/WorkoutForm";
 import { auth } from "@/lib/auth";

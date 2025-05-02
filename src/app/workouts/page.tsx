@@ -1,4 +1,3 @@
-import React from "react";
 import { getWorkouts } from "@/lib/actions";
 import WorkoutDetails from "@/components/WorkoutDetails";
 import { Metadata } from "next";

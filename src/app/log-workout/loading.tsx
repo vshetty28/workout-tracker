@@ -1,6 +1,4 @@
-type Props = {};
-
-const loading = (props: Props) => {
+const loading = () => {
 	return (
 		<div className="flex justify-center items-center mt-40">
 			<span className="loading loading-spinner loading-xl text-primary"></span>

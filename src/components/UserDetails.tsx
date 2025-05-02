@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import { auth } from "@/lib/auth";
-const UserDetails = async ({session}) => {
+
+const UserDetails = async ({ session }) => {
 	//const session = await auth();
 	if (!session?.user) {
 		return <div className="m-5">Not Logged In.</div>;

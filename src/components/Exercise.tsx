@@ -1,5 +1,3 @@
-import React from "react";
-
 const Exercise: React.FC<{
 	name: string;
 	target: string;
