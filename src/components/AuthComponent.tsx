@@ -23,8 +23,8 @@ const AuthComponent = async ({ children }) => {
 					<h1 className="text-4xl lg:text-6xl text-center text-nowrap text-primary font-bold my-2 lg:my-5">Workout Tracker</h1>
 				</Link>
 				<div className="flex-1 flex flex-row justify-end gap-2 lg:gap-4">
-					<UserDetails />
-					<SignOutButton />
+					<UserDetails session={session} />
+					<SignOutButton session={session}/>
 				</div>
 			</div>
 			{children}

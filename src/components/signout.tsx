@@ -2,8 +2,7 @@ import React from "react";
 import { signOutAction } from "@/lib/actions";
 import { auth } from "@/lib/auth";
 
-const SignOutButton = async () => {
-	const session = await auth();
+const SignOutButton = async ({session}) => {
 	if (!session?.user) {
 		return <></>;
 	}
