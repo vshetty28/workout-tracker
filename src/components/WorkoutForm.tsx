@@ -87,7 +87,7 @@ const WorkoutForm: React.FC<{ currWorkout: WorkoutType; edit: boolean }> = ({ cu
 	// update workout date
 	const handleDateChange = ({ target }) => {
 		const currDate = new Date(target.value);
-		currDate.setDate(currDate.getDate());
+		currDate.setDate(currDate.getDate() + 1);
 		setWorkout((values) => ({ ...values, date: currDate }));
 	};
 

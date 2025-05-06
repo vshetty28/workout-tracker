@@ -27,7 +27,7 @@ const ExerciseFilter = () => {
 		const startDate = new Date(filter.start_date);
 		const endDate = new Date(filter.end_date);
 		startDate.setDate(startDate.getDate());
-		endDate.setDate(endDate.getDate());
+		endDate.setDate(endDate.getDate() + 1);
 
 		params.set("start", startDate.toLocaleDateString());
 		params.set("end", endDate.toLocaleDateString());
