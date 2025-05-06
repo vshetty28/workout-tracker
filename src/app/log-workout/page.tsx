@@ -4,9 +4,11 @@ export const metadata: Metadata = {
 	title: "Log Workout",
 };
 const LogWorkout = async () => {
+	const today = new Date()
+	today.setHours(0,0,0,0);
 	const workout = {
 		workout: "",
-		date: new Date(),
+		date: today,
 		duration: 0,
 		exercises: [],
 		id: -1,
