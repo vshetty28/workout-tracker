@@ -15,7 +15,7 @@ const ExerciseReport = async ({ searchParams }: { searchParams: Promise<{ [key: 
 	const sortOrder = Array.isArray(order) ? order[0] : order;
 	startDate.setDate(startDate.getDate() + 1);
 	endDate.setDate(endDate.getDate() + 1);
-	console.log(min, max);
+	console.log(startDate, endDate, min, max);
 	const exercises: any = await getAllExercises(startDate, endDate, Number(min), Number(max), sortCol, sortOrder);
 
 	const averages: any = await getAverages(startDate, endDate, Number(min), Number(max));

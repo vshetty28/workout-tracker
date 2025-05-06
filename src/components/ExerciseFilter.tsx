@@ -26,8 +26,8 @@ const ExerciseFilter = () => {
 		const params = new URLSearchParams(searchParams.toString());
 		const startDate = new Date(filter.start_date);
 		const endDate = new Date(filter.end_date);
-		startDate.setDate(startDate.getDate() + 1);
-		endDate.setDate(endDate.getDate() + 1);
+		startDate.setDate(startDate.getDate());
+		endDate.setDate(endDate.getDate());
 
 		params.set("start", startDate.toLocaleDateString());
 		params.set("end", endDate.toLocaleDateString());
